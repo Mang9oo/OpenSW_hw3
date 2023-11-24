@@ -5,8 +5,6 @@ import schedule
 import time
 import pytz
 import datetime
-token = "6804735527:AAFvVD6okO8SVtHL9sI6eLymUSs9VB7GdDw"
-
 
 client = OpenAI(
     api_key =  "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"
@@ -19,13 +17,14 @@ completion = client.chat.completions.create(
     ]
 )
 
+token = "6804735527:AAFvVD6okO8SVtHL9sI6eLymUSs9VB7GdDw"
 bot = telegram.Bot(token = token)
 public_chat_name = "@k20222test"
 
 async def job():
     now = datetime.datetime.now(pytz.timezone('Asia/Seoul'))
     
-    if 6 <= now.hour < 23:
+    if now.hour >=23 or now.hour <=6:
         return
     
     id_channel = await bot.sendMessage(
